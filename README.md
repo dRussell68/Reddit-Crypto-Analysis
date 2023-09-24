@@ -27,10 +27,9 @@ It's important to note the following limitations of this project:
 
 3. Security measure
 
-## Dependencies
+## Prerequisites 
 
-This project uses the following Python libraries:
-
+- Python 3.x
 - requests
 - pandas
 - Matplotlib
