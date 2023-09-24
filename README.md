@@ -37,21 +37,21 @@ This project uses the following Python libraries:
 
 You can install these dependencies using `pip`:
 
-pip install requests pandas matplotlib pycoingecko
+  pip install requests pandas matplotlib pycoingecko
 
 ## Usage
 
 1. Clone the repository:
 
-  git clone https://github.com/dRussell68/Reddit-Crypto-Analysis.git
+     git clone https://github.com/dRussell68/Reddit-Crypto-Analysis.git
 
 2. Navigate to the project directory:
 
-  cd Reddit-Crypto-Analysis
+      cd Reddit-Crypto-Analysis
 
 3. Run the main script:
 
-  python crypto_trends.py
+      python crypto_trends.py
 
 ## Acknowledgments
 
