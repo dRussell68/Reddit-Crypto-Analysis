@@ -12,7 +12,7 @@ The primary purpose of this project is educational. It provides an opportunity t
 
 It's important to note the following limitations of this project:
 
-1. **Data Plotting Method:** Does not account for data older than the previous time the script was run, such as data from 2+ runs ago
+1. **Data Plotting Method:** Does not account for data older than the previous time the script was run, such as data from 2+ runs ago. Will produce inccorect data for coins that were not in the previous data set from when the script was run
 
 2. **Error Handling:** Error handling is minimal. In a production environment, more robust error handling and data validation would be necessary.
 
