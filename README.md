@@ -17,7 +17,7 @@ It's important to note the following limitations of this project:
 2. **Error Handling:** Error handling is minimal. In a production environment, more robust error handling and data validation would be necessary.
 
 3. **Security:** This project does not cover security measures typically required in a production-level application, especially when interacting with external APIs.
-4. **Data Freshness** Limited to roughly 5 minute intervals else data will always show a 0% change in price 
+4. **Data Freshness:** Limited to roughly 5 minute intervals else data will always show a 0% change in price 
 
 ## Future Enhancements
 
