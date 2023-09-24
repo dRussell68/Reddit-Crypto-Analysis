@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a personal learning exercise focused on web scraping and data visualization using Python. It aims to collect cryptocurrency data from Reddit's /r/cryptocurrency and CoinGecko's API, perform basic analysis, and visualize the results using Matplotlib. The script takes coins found in the top posts and plots the change in price percentage since the last time the script was run.
+This project is a personal learning exercise focused on web scraping and data visualization using Python. It aims to collect cryptocurrency data from Reddit's /r/cryptocurrency and CoinGecko's API, perform basic analysis, and visualize the results using Matplotlib. The script takes coins found in the top posts and plots the change in price percentage since the last time the script was run. This will create 2 files when run, one to store data gathered from CoinGecko and another to store data for the graph.
 
 ## Purpose
 
@@ -39,7 +39,7 @@ You can install these dependencies using `pip`:
 
   pip install requests pandas matplotlib pycoingecko
 
-## Usage
+## Installation
 
 1. Clone the repository:
 
