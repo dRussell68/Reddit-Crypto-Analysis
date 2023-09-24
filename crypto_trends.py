@@ -7,7 +7,7 @@ import re
 import matplotlib.pyplot as plt
 from datetime import timedelta, datetime, date
 
-# return a jason file of reddit/r/cryptocurrency page info
+# return a json file of reddit/r/cryptocurrency page info
 def get_reddit_post():
     subreddit = 'cryptocurrency'
     limit = 500
