@@ -79,6 +79,7 @@ def calculate_price_difference_percentage():
         previous_date = unique_date_list[-2]  # get the second-to-last date (previous)
     else:
         previous_date = None
+        
     if len(unique_date_list) >= 1:
         current_date = unique_date_list[-1]  # get the last date (current)
     else:
