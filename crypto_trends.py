@@ -8,7 +8,7 @@ import re
 import matplotlib.pyplot as plt
 from datetime import timedelta, datetime, date
 
-# return a json file of reddit/r/cryptocurrency page info
+# return a jason file of reddit/r/cryptocurrency page info
 def get_reddit_post():
     subreddit = 'cryptocurrency'
     limit = 500
@@ -25,7 +25,8 @@ def get_reddit_post():
         print(f"Request Exception: {req_err}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-    return request.json()
+    else:
+        return request.json()
 
 # create a json file of the first 250 pages of cryptocurrency from coin gecko
 def get_coin_prices():
@@ -72,21 +73,33 @@ def create_csv_for_chart(coin_result_data):
 def calculate_price_difference_percentage():
     df = pd.read_csv('results_output.csv')
     unique_date_list = df['date'].unique()
-    previous_date = unique_date_list[-2]  # get the second-to-last date (previous)
-    current_date = unique_date_list[-1]  # get the last date (current)
+
+    # If not enough date data, set to none
+    if len(unique_date_list) >= 2:
+        previous_date = unique_date_list[-2]  # get the second-to-last date (previous)
+    else:
+        previous_date = None
+    if len(unique_date_list) >= 1:
+        current_date = unique_date_list[-1]  # get the last date (current)
+    else:
+        current_date = None
 
     # calculate the percentage difference
     for coin in df['coin'].unique():
-        condition_previous = (df['date'] == previous_date) & (df['coin'] == coin)
-        condition_current = (df['date'] == current_date) & (df['coin'] == coin)
+        # If not enough date data, use default 0.0 for percentage change
+        if previous_date == None or current_date == None:
+            break
+        else:
+            condition_previous = (df['date'] == previous_date) & (df['coin'] == coin)
+            condition_current = (df['date'] == current_date) & (df['coin'] == coin)
 
-        previous_price = df.loc[condition_previous, 'price'].values[0]
-        current_price = df.loc[condition_current, 'price'].values[0]
+            previous_price = df.loc[condition_previous, 'price'].values[0]
+            current_price = df.loc[condition_current, 'price'].values[0]
 
-        percentage_diff = ((current_price - previous_price) / previous_price) * 100
+            percentage_diff = ((current_price - previous_price) / previous_price) * 100
 
-        # update the 'percent_dif' column for the current coin
-        df.loc[condition_current, 'percent_dif'] = percentage_diff
+            # update the 'percent_dif' column for the current coin
+            df.loc[condition_current, 'percent_dif'] = percentage_diff
 
     df.to_csv('results_output.csv', index=False)
 
