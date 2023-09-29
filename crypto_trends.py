@@ -18,8 +18,13 @@ def get_reddit_post():
     try:
         base_url = f"https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}"
         request = requests.get(base_url, headers = {'User-agent': 'yourbot'})
-    except:
-        print("An Error Occured")
+        request.raise_for_status()  # Raises an exception for HTTP errors (4xx and 5xx)
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP Error: {http_err}")
+    except requests.exceptions.RequestException as req_err:
+        print(f"Request Exception: {req_err}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
     return request.json()
 
 # create a json file of the first 250 pages of cryptocurrency from coin gecko
