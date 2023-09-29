@@ -90,6 +90,7 @@ def calculate_price_difference_percentage():
         # If not enough date data, use default 0.0 for percentage change
         if previous_date == None or current_date == None:
             break
+        # Else calculate percentage difference
         else:
             condition_previous = (df['date'] == previous_date) & (df['coin'] == coin)
             condition_current = (df['date'] == current_date) & (df['coin'] == coin)
