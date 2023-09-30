@@ -8,6 +8,9 @@ import re
 import matplotlib.pyplot as plt
 from datetime import timedelta, datetime, date
 
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+
 # return a jason file of reddit/r/cryptocurrency page info
 def get_reddit_post():
     subreddit = 'cryptocurrency'
@@ -79,29 +82,33 @@ def calculate_price_difference_percentage():
         previous_date = unique_date_list[-2]  # get the second-to-last date (previous)
     else:
         previous_date = None
-        
     if len(unique_date_list) >= 1:
         current_date = unique_date_list[-1]  # get the last date (current)
     else:
         current_date = None
 
-    # calculate the percentage difference
     for coin in df['coin'].unique():
         # If not enough date data, use default 0.0 for percentage change
         if previous_date == None or current_date == None:
             break
-        # Else calculate percentage difference
         else:
             condition_previous = (df['date'] == previous_date) & (df['coin'] == coin)
             condition_current = (df['date'] == current_date) & (df['coin'] == coin)
 
-            previous_price = df.loc[condition_previous, 'price'].values[0]
-            current_price = df.loc[condition_current, 'price'].values[0]
+            # If a condition is true
+            if len(condition_previous) > 0 and len(condition_current) > 0:
+                previous_price = df.loc[condition_previous, 'price'].values[0]
+                current_price = df.loc[condition_current, 'price'].values[0]
 
-            percentage_diff = ((current_price - previous_price) / previous_price) * 100
+                percentage_diff = ((current_price - previous_price) / previous_price) * 100
 
-            # update the 'percent_dif' column for the current coin
-            df.loc[condition_current, 'percent_dif'] = percentage_diff
+                # update the 'percent_dif' column for the current coin
+                df.loc[condition_current, 'percent_dif'] = percentage_diff
+                
+            # if the condition is false (coin no longer on reddit page, set to 0)
+            else:
+                # update the 'percent_dif' column for the current coin
+                df.loc[condition_current, 'percent_dif'] = 0.0
 
     df.to_csv('results_output.csv', index=False)
 
